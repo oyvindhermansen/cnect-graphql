@@ -10,17 +10,19 @@ module.exports = gql`
     avatar: String
   }
 
+  input UserInput {
+    email: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+  }
+
   type Query {
     users: [User]
     user(_id: ID!): User
   }
 
   type Mutation {
-    createUser(
-      email: String!
-      firstName: String!
-      lastName: String!
-      password: String!
-    ): User
+    createUser(input: UserInput): User
   }
 `;
