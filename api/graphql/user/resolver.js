@@ -21,10 +21,13 @@ async function createUser(root, args, context) {
   }
 }
 
-module.exports = {
-  // Query
-  users: listUsers,
-
-  // Mutation
-  createUser
+const userResolver = {
+  Query: {
+    users: listUsers
+  },
+  Mutation: {
+    createUser
+  }
 };
+
+module.exports = userResolver;
