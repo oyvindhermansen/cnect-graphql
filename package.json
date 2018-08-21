@@ -1,0 +1,22 @@
+{
+  "name": "cnect-graphql",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "Øyvind Hermansen",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "apollo-server": "^2.0.4",
+    "apollo-server-express": "^2.0.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "graphql": "^0.13.2",
+    "graphql-tools": "^3.1.1",
+    "merge-graphql-schemas": "^1.5.3",
+    "mongoose": "^5.2.9"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  }
+}
