@@ -13,7 +13,14 @@ const User = require('./api/models/User');
 // Connect to the MongoDB
 dbConnect();
 
-const server = new ApolloServer({ schema, context: { User } });
+const server = new ApolloServer({
+  schema,
+  context: (req, res) => ({
+    User,
+    req,
+    res
+  })
+});
 server.applyMiddleware({ app });
 
 app.listen(PORT, err => {

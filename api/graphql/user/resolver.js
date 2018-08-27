@@ -8,12 +8,35 @@ async function listUsers(root, args, context) {
   }
 }
 
+async function getUserById(root, args, context) {
+  try {
+    const user = await context.User.findOne({ _id: args._id });
+
+    return user;
+  } catch (error) {
+    return error;
+  }
+}
+
 async function createUser(root, args, context) {
   try {
-    args.fullName = `${args.firstName} ${args.lastName}`;
+    args.input.fullName = `${args.input.firstName} ${args.input.lastName}`;
 
-    const user = new context.User(args);
+    const user = new context.User(args.input);
     await user.save();
+
+    return user;
+  } catch (error) {
+    return error;
+  }
+}
+
+async function updateUser(root, args, context) {
+  try {
+    const user = context.User.findOneAndUpdate(
+      { _id: args.input._id },
+      args.input
+    );
 
     return user;
   } catch (error) {
@@ -23,10 +46,12 @@ async function createUser(root, args, context) {
 
 const userResolver = {
   Query: {
-    users: listUsers
+    users: listUsers,
+    user: getUserById
   },
   Mutation: {
-    createUser
+    createUser,
+    updateUser
   }
 };
 
